@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Home</title></head>
+<body>
+  {% if user %}
+    <h1>안녕하세요, {{ user }}님!</h1>
+    <a href="/logout">로그아웃</a>
+  {% else %}
+    <h1>환영합니다!</h1>
+    <a href="/login">로그인</a> | <a href="/register">회원가입</a>
+  {% endif %}
+</body>
+</html>
