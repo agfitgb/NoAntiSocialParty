@@ -7,9 +7,11 @@ app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
+@app.before_request
+def init_db():
+    if not getattr(app, 'db_initialized', False):
+        db.create_all()
+        app.db_initialized = True
 
 @app.route("/")
 def index():
