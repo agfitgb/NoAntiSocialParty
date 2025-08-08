@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="card rescard">
+  <div>
+    <h2>당신의 결과</h2>
+    <div class="resultbox">
+      <p class="small">이 값은 상대적이며 단순 지표입니다.</p>
+      <h3 style="margin:8px 0">{{ quadrant }}</h3>
+      <p>{{ desc }}</p>
+      <ul>
+        <li class="small">경제 성향 지표: <strong>{{ x }}</strong></li>
+        <li class="small">권위-자유 지표: <strong>{{ y }}</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="center">
+    <canvas id="chart" width="300" height="300"></canvas>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('chart').getContext('2d');
+  new Chart(ctx,{
+    type: 'radar',
+    data: {
+      labels:['경제','권위'],
+      datasets:[{
+        label:'성향',
+        data:[{{ x }}, {{ y }}],
+        fill:true,
+        backgroundColor:'rgba(124,58,237,0.18)',
+        borderColor:'rgba(124,58,237,0.9)',
+        pointBackgroundColor:'rgba(124,58,237,0.9)'
+      }]
+    },
+    options:{scales:{r:{min:-5,max:5}}}
+  })
+</script>
+{% endblock %}

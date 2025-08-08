@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="card" id="card">
+  <h3 id="qcount">1 / {{ total }}</h3>
+  <div id="questionArea"></div>
+  <div class="footer">
+    <div style="flex:1">
+      <div class="progress"><i id="bar"></i></div>
+    </div>
+    <div style="margin-left:12px">
+      <button class="startbtn" id="nextBtn">다음</button>
+    </div>
+  </div>
+</div>
+<script>
+  // test.js 에서 사용할 전역 질문 전달
+  window.POL_QUESTIONS = {{ questions|tojson }};
+</script>
+{% endblock %}
